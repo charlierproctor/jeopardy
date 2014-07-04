@@ -1,0 +1,38 @@
+<script src="http://code.jquery.com/qunit/qunit-1.14.0.js"></script>
+  <link rel="stylesheet" href="http://code.jquery.com/qunit/qunit-1.14.0.css">
+  <div id="qunit"></div>
+  <div id="qunit-fixture"></div>
+  <div align="center" style="text-align:center;">
+  <div id="your-result" style="font-size:30px; font-weight:bold; padding-top:100px"></div>
+  <h2>Our Solution:</h2>
+  <div style="width:600px"><pre style="text-align:left"><div id="our-solution" style="font-size:18px"></div></pre></div>
+  <h2>Your Solution:</h2>
+  <div style="width:600px"><pre><div id="their-solution" style="font-size:18px"></div></pre></div>
+  </div>
+<script type="text/javascript">
+	var answer = <%= @answer %>
+	var oursolution = <%= @question.solution %>
+	<% input_arr = @question.input.split("\r\n") %>
+<% input_arr.each do | inp | %>
+
+QUnit.test( "testing on `<%= inp %>` => ", function( assert ) {
+  assert.equal( answer.apply(this,[<%= inp %>]), oursolution.apply(this,[<%= inp %>]));
+});
+
+<% end %>
+
+QUnit.done(function( details ) {
+	  console.log( "Total: ", details.total, " Failed: ", details.failed, " Passed: ", details.passed, " Runtime: ", details.runtime );
+
+	if(details.failed === 0){
+		document.getElementById('your-result').innerHTML = "<a href='/questions/<%= @question.number %>/success/<%= @question.points %>'>Success!</a>"
+	} else{
+		document.getElementById('your-result').innerHTML = "<a href='/questions/<%= @question.number %>/failure/<%= @question.points %>'>Failed!</a>"
+	}
+	
+	document.getElementById('our-solution').innerHTML = oursolution
+	document.getElementById('their-solution').innerHTML = answer
+
+});
+</script>
+

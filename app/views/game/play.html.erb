@@ -1,0 +1,33 @@
+<h1>Jeopardy</h1>
+<style>
+	td,th {
+		font-size: 30px;
+		font-weight: bolder;
+		padding: 30px;
+	}
+	body {
+		text-align: center;
+	}
+	h1 {
+		font-size: 100px;
+	}
+</style>
+<h2>Team <%= session[:teamname] %> has <%= session[:points] %> points.</h2>
+<table align="center">
+<tr>
+<th>Ruby</th>
+<th>Javascript</th>
+<th>Rails</th>
+<th>
+</th>
+</tr>
+<% (1..5).each do |i| %>
+<tr>
+<% (0..3).each do |j| %>
+<td>
+<a href="/questions/<%= (j*5+i).to_s %>"><%= (i*100).to_s %>
+</td>
+<%end%>
+</tr>
+<% end %>
+</table>

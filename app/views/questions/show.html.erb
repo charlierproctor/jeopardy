@@ -1,0 +1,20 @@
+<div style = "height: 80px"></div>
+<div align="center">
+<p id="notice"><%= notice %></p>
+
+  <h1 style="font-size: 50px">Your Question:</h1>
+  <div style="height: 20px"></div>
+  <div style="font-size: 30px"><%= @question.prompt %></div>
+  <div style="height: 30px"></div>
+
+  <h3 style="font-size: 30px">Test Suite:</strong></h3>
+  <%= @question.tests %>
+<%= form_tag("/questions/" + params[:id] + "/grade", method: "post") do%>
+	<h3 style="font-size: 40px">Your Answer:</h3>
+	<textarea name="answer" rows="10" cols="100"></textarea> 
+	<input type="hidden" name="question" value="<%= params[:id] %>"/>
+	<br>
+	<input style="font-size: 40px" type="submit" value="Continue" />
+<% end %>
+</div>
+
