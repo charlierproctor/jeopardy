@@ -1,20 +1,75 @@
-<div style = "height: 80px"></div>
+<div style = "height: 20px"></div>
+<style type="text/css">
+	textarea {
+	border: 5px solid black;
+	border-radius: 10px;
+	font-size: 20px;
+}
+#prompt{
+	font-size: 30px;
+	line-height: 40px;
+}
+h3{
+	font-size: 40px;
+}
+h1 {
+	font-size: 60px;
+}
+pre {
+  	width:500px; 
+  	border-radius: 10px;
+  	border: 3px solid black;
+  	font-size: 18px;
+	white-space: pre-wrap;       /* css-3 */
+	white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+	white-space: -pre-wrap;      /* Opera 4-6 */
+	white-space: -o-pre-wrap;    /* Opera 7 */
+	word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+.button {
+  background: lightgreen;
+    background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+
+  -webkit-border-radius: 12;
+  -moz-border-radius: 12;
+  border-radius: 12px;
+  color: black;
+  font-size: 12px;
+  font-weight: bolder;
+  padding: 4px 9px 4px 9px;
+  text-decoration: none;
+}
+
+.button:hover {
+  background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, lightgreen, darkgreen);
+  background-image: -moz-linear-gradient(top, lightgreen, darkgreen);
+  background-image: -ms-linear-gradient(top, lightgreen, darkgreen);
+  background-image: -o-linear-gradient(top, lightgreen, darkgreen);
+  background-image: linear-gradient(to bottom, lightgreen, darkgreen);
+    text-decoration: none;
+}
+</style>
 <div align="center">
 <p id="notice"><%= notice %></p>
 
-  <h1 style="font-size: 50px">Your Question:</h1>
+  <h1>Question:</h1>
+  <div style="height: 10px"></div>
+  <div id="prompt"><%= @question.prompt %></div>
   <div style="height: 20px"></div>
-  <div style="font-size: 30px"><%= @question.prompt %></div>
-  <div style="height: 30px"></div>
 
-  <h3 style="font-size: 30px">Test Suite:</strong></h3>
-  <%= @question.tests %>
+  <h3>Examples:</strong></h3>
+ <pre> <%= @question.tests %></pre>
 <%= form_tag("/questions/" + params[:id] + "/grade", method: "post") do%>
-	<h3 style="font-size: 40px">Your Answer:</h3>
-	<textarea name="answer" rows="10" cols="100"></textarea> 
+	<h3>Your Answer:</h3>
+	<textarea name="answer" rows="6" cols="60"></textarea> 
 	<input type="hidden" name="question" value="<%= params[:id] %>"/>
-	<br>
-	<input style="font-size: 40px" type="submit" value="Continue" />
+	<div style="height:20px"></div>
+	<input class="button" style="font-size: 40px" type="submit" value="Submit" />
 <% end %>
 </div>
 
