@@ -18,6 +18,6 @@ class GameController < ApplicationController
   			session[:points] = new_points.to_i
 		end  			
   	end
-  	render 'play'
+  	redirect_to action: 'play'
   end
 end
