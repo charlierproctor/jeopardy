@@ -55,8 +55,8 @@ body {
  </div>
  <div id="warning"><b>Do not go back or attempt to reload this page. You will not be able to view this page again and you will lose any points you might have earned. If no button appears after a few seconds, your answer is incorrect. <a href="/game/play">Navigate back to the game page.</a></b></div>
 <script type="text/javascript">
-	var answer = <%= @answer %>
-	var oursolution = <%= @question.solution %>
+	var answer = <%= raw(@answer) %>
+	var oursolution = <%= raw(@question.solution) %>
 	<% input_arr = @question.input.split("\r\n") %>
 <% input_arr.each do | inp | %>
 
