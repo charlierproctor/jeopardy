@@ -30,9 +30,17 @@
 <% (1..5).each do |i| %>
 <tr>
 <% (0..3).each do |j| %>
+<% question_number = (j*5+i) %>
+<% points = i*100 %>
+<% if @answered_questions.include?(question_number) %>
 <td>
-<a href="/questions/<%= (j*5+i).to_s %>"><%= (i*100).to_s %>
+<span style="color:grey"><b><%= points %></b></span>
 </td>
+<% else %>
+<td>
+<a href="/questions/<%= question_number %>"><%= points %></a>
+</td>
+<%end%>
 <%end%>
 </tr>
 <% end %>
