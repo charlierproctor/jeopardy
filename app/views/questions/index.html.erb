@@ -18,8 +18,8 @@
         <td><%= question.points %></td>
         <td><%= question.prompt %></td>
         <td><%= question.tests %></td>
-        <td><%= link_to 'Show', question %></td>
-        <td><%= link_to 'Edit', edit_question_path(question) %></td>
+        <td><%= link_to 'Show', '/questions/' + question.number.to_s %></td>
+        <td><%= link_to 'Edit', '/questions/' + question.number.to_s + '/edit' %></td>
         <td><%= link_to 'Destroy', question, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -28,4 +28,8 @@
 
 <br>
 
-<%= link_to 'New Question', new_question_path %>
+<p><%= link_to 'New Question', new_question_path %></p>
+<div style="float:right">
+<p><%= link_to 'Reset Game', "/admin/clearpoints", method: :delete, data: { confirm: 'This will clear all current points. Are you sure you want to continue?'} %></p>
+<p><%= link_to 'New Game', "/admin/newgame", method: :delete, data: { confirm: 'This will delete all teams, clear all scores, and reset the game. Are you sure you want to continue?'} %></p>
+</div>

@@ -22,6 +22,24 @@
 	position: relative;
 	right: 20%;
 }
+#warning {
+	align:center; 
+	position: fixed; 
+	bottom: 0px; 
+	width: 100%; 
+	left: 0px;
+	color: black;
+	background-color: lightblue; 
+	border-radius: 5px;
+	border-style: solid;
+	border-color: black;
+	border-width: 3px;
+	line-height:20px; 
+	font-size: 16px;
+}
+body {
+	margin-bottom: 350px;
+}
   </style>
 
   <div id="qunit"></div>
@@ -35,7 +53,7 @@
 <pre id="our-solution" style="font-size:18px"></pre>
   </div>
  </div>
- <div style="align:center; position: fixed; bottom: 35px; left: 30px; line-height:24px; font-size: 18px;"><b>Do not go back or attempt to reload this page. You will not be able to view this page again and you will lose any points you might have earned. If no button appears after a few seconds, your answer is incorrect. <a href="/game/play">Navigate back to the game page.</a></b></div>
+ <div id="warning"><b>Do not go back or attempt to reload this page. You will not be able to view this page again and you will lose any points you might have earned. If no button appears after a few seconds, your answer is incorrect. <a href="/game/play">Navigate back to the game page.</a></b></div>
 <script type="text/javascript">
 	var answer = <%= @answer %>
 	var oursolution = <%= @question.solution %>

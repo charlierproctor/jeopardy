@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   match '/game/newteam', to: 'game#newteam', via: 'post'
   match '/game/continue', to: 'game#continue', via: 'post'
   match '/teams', to: 'teams#show', via: 'get'
+  match '/admin/newgame', to: 'teams#newgame', via: 'delete'
+  match '/admin/clearpoints', to: 'teams#clearpoints', via: 'delete'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

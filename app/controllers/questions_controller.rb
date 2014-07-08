@@ -1,5 +1,5 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: [:show, :edit, :update, :destroy]
+  before_action :set_question, only: [:update, :destroy]
 
   def grade
     @answer = params[:answer]
@@ -52,6 +52,7 @@ class QuestionsController < ApplicationController
 
   # GET /questions/1/edit
   def edit
+    @question = Question.find_by(number: params[:id])
   end
 
   # POST /questions
@@ -61,11 +62,9 @@ class QuestionsController < ApplicationController
 
     respond_to do |format|
       if @question.save
-        format.html { redirect_to @question, notice: 'Question was successfully created.' }
-        format.json { render :show, status: :created, location: @question }
+        format.html { redirect_to '/questions', notice: 'Question was successfully created.' }
       else
         format.html { render :new }
-        format.json { render json: @question.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -75,11 +74,9 @@ class QuestionsController < ApplicationController
   def update
     respond_to do |format|
       if @question.update(question_params)
-        format.html { redirect_to @question, notice: 'Question was successfully updated.' }
-        format.json { render :show, status: :ok, location: @question }
+        format.html { redirect_to '/questions', notice: 'Question was successfully updated.' }
       else
         format.html { render :edit }
-        format.json { render json: @question.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -89,15 +86,14 @@ class QuestionsController < ApplicationController
   def destroy
     @question.destroy
     respond_to do |format|
-      format.html { redirect_to questions_url, notice: 'Question was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html { redirect_to '/questions', notice: 'Question was successfully destroyed.' }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_question
-      @question = Question.find(params[:id])
+      @question = Question.find_by(id: params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
