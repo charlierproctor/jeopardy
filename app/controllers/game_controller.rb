@@ -19,10 +19,10 @@ class GameController < ApplicationController
     #grab info from params / session
     @team = Team.find(session[:team])
   	new_points = params[:points]
-    question_number = params[:question_number]
+    question_id = params[:question_id]
 
     #create the appropriate answer link with the right number of points
-    answer = Answer.find_by(team_id: @team.id, question_id: question_number)  #id with number??
+    answer = Answer.find_by(team_id: @team.id, question_id: question_id)  #id with number??
     answer.update_attributes(points: new_points)
     
     #update the team's total points

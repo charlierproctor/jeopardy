@@ -52,7 +52,7 @@ function formHTML(result){
 	if(result == "Success"){
 		points = <%= @question.points %>;
 	}
-	var str = '<%= form_tag "/game/continue" do %><input type="hidden" name="points" value="' + points + '" /><input type="hidden" name="question_number" value="<%= @question.number %>" /><%= submit_tag "result", class: "button", style: "font-size: 40px" %><% end %>';
+	var str = '<%= form_tag "/game/continue" do %><input type="hidden" name="points" value="' + points + '" /><input type="hidden" name="question_id" value="<%= @question.id %>" /><%= submit_tag "result", class: "button", style: "font-size: 40px" %><% end %>';
 	return str.replace("result", result);
 }
 
