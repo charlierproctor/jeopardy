@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   root 'home#setup'
   match '/questions/:id/grade', to: 'questions#grade', via: 'post'
   resources :questions
-  match '/game/play', to: 'game#newteam', via: 'post'
-  match '/questions/:question/:status/:newpoints', to: 'game#continue', via: 'get'
+  match '/game/newteam', to: 'game#newteam', via: 'post'
+  match '/game/continue', to: 'game#continue', via: 'post'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

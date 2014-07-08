@@ -5,6 +5,16 @@ class QuestionsController < ApplicationController
     @answer = params[:answer]
     num = params[:question]
     @question = Question.find_by(number: num)
+    @team_id = session[:team]
+   
+          #let's make sure they're not cheating, by resubmitting their answer
+    if Answer.find_by(team_id: @team_id, question_id: @question.id) != nil
+      flash[:message] = "Sorry, you can only submit your answer once -- nice try!"
+      redirect_to "/game/play"
+    else
+      Answer.create(team_id: @team_id, question_id: @question.id, points: 0)
+    end
+
   end
 
 

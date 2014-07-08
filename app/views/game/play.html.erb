@@ -1,3 +1,9 @@
+<% if @message != nil %>
+	<script>
+		window.onload = function(){alert("<%= @message %>");}
+	</script>
+<% end %>
+
 <h1>Jeopardy</h1>
 <style>
 	td,th {
@@ -12,7 +18,7 @@
 		font-size: 100px;
 	}
 </style>
-<h2>Team <%= session[:teamname] %> has <%= session[:points] %> points.</h2>
+<h2>Team <%= @team.name %> has <%= @team.points %> points.</h2>
 <table align="center">
 <tr>
 <th>Ruby</th>

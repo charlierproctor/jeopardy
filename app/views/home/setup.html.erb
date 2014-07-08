@@ -3,9 +3,9 @@
 <h1 style="font-size: 50px;">Jeopardy</h1>
 <h3>Pick a team name</h3>
 
-<%= form_tag("/game/play", method: "post") do%>
+<%= form_tag("/game/newteam", method: "post") do%>
 	Team Name:
-	<input type="text" name="teamname" />
-	<input type="submit" value="Continue" />
+	<%= text_field_tag :teamname %>
+	<%= submit_tag "Continue" %>
 <% end %>
 </div>

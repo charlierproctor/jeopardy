@@ -47,13 +47,22 @@ QUnit.test( "testing on `<%= inp %>` => ", function( assert ) {
 
 <% end %>
 
+function formHTML(result){ 
+	var points = 0;
+	if(result == "Success"){
+		points = <%= @question.points %>;
+	}
+	var str = '<%= form_tag "/game/continue" do %><input type="hidden" name="points" value="' + points + '" /><input type="hidden" name="question_number" value="<%= @question.number %>" /><%= submit_tag "result", class: "button", style: "font-size: 40px" %><% end %>';
+	return str.replace("result", result);
+}
+
 QUnit.done(function( details ) {
 	  console.log( "Total: ", details.total, " Failed: ", details.failed, " Passed: ", details.passed, " Runtime: ", details.runtime );
 
 	if(details.failed === 0){
-		document.getElementById('your-result').innerHTML = "<a href='/questions/<%= @question.number %>/success/<%= @question.points %>'>Success!</a>"
+		document.getElementById('your-result').innerHTML = formHTML("Success")
 	} else{
-		document.getElementById('your-result').innerHTML = "<a href='/questions/<%= @question.number %>/failure/<%= @question.points %>'>Failed!</a>"
+		document.getElementById('your-result').innerHTML = formHTML("Failure")
 	}
 	
 	document.getElementById('our-solution').innerHTML = oursolution
