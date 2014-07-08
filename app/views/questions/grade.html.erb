@@ -48,9 +48,9 @@ body {
   <div id="your-result"></div>
   <div style="float:left">
   <h2>Your Solution:</h2>
-<pre id="their-solution" style="font-size:18px"></pre>
+<pre id="their-solution" style="font-size:18px"><%= raw(@answer) %></pre>
   <h2>Our Solution:</h2>
-<pre id="our-solution" style="font-size:18px"></pre>
+<pre id="our-solution" style="font-size:18px"><%= raw(@question.solution) %></pre>
   </div>
  </div>
  <div id="warning"><b>Do not go back or attempt to reload this page. You will not be able to view this page again and you will lose any points you might have earned. If no button appears after a few seconds, your answer is incorrect. <a href="/game/play">Navigate back to the game page.</a></b></div>
@@ -86,8 +86,8 @@ QUnit.done(function( details ) {
 		document.getElementById('your-result').innerHTML = formHTML("Failure")
 	}
 	
-	document.getElementById('our-solution').innerHTML = oursolution
-	document.getElementById('their-solution').innerHTML = answer
+	// document.getElementById('our-solution').innerHTML = oursolution
+	// document.getElementById('their-solution').innerHTML = answer
 
 });
 </script>
