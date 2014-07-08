@@ -1,0 +1,30 @@
+<style>
+	table {
+	    border-collapse: collapse;
+	    width: 60%;
+	}
+	table, th, td {
+	    text-align: center;
+		border: 1px solid grey;
+		font-size: 18px;
+		padding: 10px;
+	}
+	th {
+		background-color: lightgreen;
+	}
+</style>
+
+<table>
+	<tr>
+		<th>Team Name</th>
+		<th>Points</th>
+		<th>% of Questions Answered</th>
+	</tr>
+	<% @teams.each do |team| %>
+	<tr>
+		<td><%= team.name %></td>
+		<td><%= team.points %></td>
+		<td><%= (100 * team.questions.count / @questions.count).to_i %> %</td>
+	</tr>
+	<% end %>
+</table>

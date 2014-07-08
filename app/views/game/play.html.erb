@@ -1,7 +1,29 @@
-<% if @message != nil %>
-	<script>
-		window.onload = function(){alert("<%= @message %>");}
-	</script>
+<style>
+	#message {
+		display: inline-block;
+		padding: 10px;
+		border-style: solid; 
+		border-radius: 10px; 
+		border-width:3px;
+		font-size: 24px;
+		font-weight: bolder;
+		line-height: 30px;
+	}
+	.failure {
+		background-color: pink;
+		color: red;
+		border-color: red;
+	}
+	.success {
+		background-color: lightgreen;
+		color: green;
+		border-color: green;
+	}
+</style>
+<% if @status != nil %>
+	<div align="center" id="message" class="<%= @status %>"><%= @message %></div>
+<% elsif @message != nil %>
+	<div align="center" id="message" class="failure"><%= @message %><br> You lose <%= @points %> points.</div>
 <% end %>
 
 <h1>Jeopardy</h1>

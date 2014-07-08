@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :questions
   match '/game/newteam', to: 'game#newteam', via: 'post'
   match '/game/continue', to: 'game#continue', via: 'post'
+  match '/teams', to: 'teams#show', via: 'get'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

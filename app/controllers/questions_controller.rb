@@ -7,14 +7,18 @@ class QuestionsController < ApplicationController
     @question = Question.find_by(number: num)
     @team_id = session[:team]
    
-          #let's make sure they're not cheating, by resubmitting their answer
-    if Answer.find_by(team_id: @team_id, question_id: @question.id) != nil
-      flash[:message] = "Sorry, you can only submit your answer once -- nice try!"
+    #let's make sure they're not cheating, by trying to resubmit their answer to the question
+    @team_answer = Answer.find_by(team_id: @team_id, question_id: @question.id)
+    if @team_answer == nil
+      redirect_to "/game/play"
+    elsif @team_answer.points < 0
+      flash[:message] = "Sorry, you can only submit your answer once."
       redirect_to "/game/play"
     else
-      Answer.create(team_id: @team_id, question_id: @question.id, points: 0)
+      @team_answer.points = - (@question.points / 2)
+      @team_answer.save
     end
-
+      flash[:points_lost] = @question.points / 2
   end
 
 
@@ -27,6 +31,18 @@ class QuestionsController < ApplicationController
   # GET /questions/1
   # GET /questions/1.json
   def show
+    @team_id = session[:team]
+    @question = Question.find_by(number: params[:id])
+
+    #let's make sure they're not cheating, by trying to answer the question again
+    if Answer.find_by(team_id: @team_id, question_id: @question.id) != nil
+      flash[:message] = "Sorry, you can only view a question once."
+      flash[:points_lost] = @question.points / 2
+      redirect_to "/game/play"
+    else
+      Answer.create(team_id: @team_id, question_id: @question.id, points: 0)
+    end
+
   end
 
   # GET /questions/new
