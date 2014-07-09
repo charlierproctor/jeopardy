@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'game/play'
+  match '/play', to: 'game#play', via: 'get'
   get 'home/setup'
   root 'home#setup'
   match '/questions/:id/grade', to: 'questions#grade', via: 'post'
