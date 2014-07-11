@@ -42,16 +42,9 @@
 </style>
 <h2>Team <%= @team.name %> has <%= @team.points %> points.</h2>
 <table align="center">
-<tr>
-<th>Ruby</th>
-<th>Javascript</th>
-<th>Rails</th>
-<th>
-</th>
-</tr>
 <% (1..5).each do |i| %>
 <tr>
-<% (0..3).each do |j| %>
+<% (0..2).each do |j| %>
 <% question_number = (j*5+i) %>
 <% points = i*100 %>
 <% if @answered_questions.include?(question_number) %>
