@@ -61,7 +61,7 @@ body {
 <% input_arr.each do | inp | %>
 
 QUnit.test( "testing on `<%= inp %>` => ", function( assert ) {
-  assert.equal( answer.apply(this,[<%= inp %>]), oursolution.apply(this,[<%= inp %>])), "what's up";
+  assert.deepEqual( answer.apply(this,[<%= inp %>]), oursolution.apply(this,[<%= inp %>])), "what's up";
 });
 
 <% end %>
