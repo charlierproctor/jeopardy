@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @question %> |
+<%= link_to 'Show', '/questions/' + @question.number.to_s %> |
 <%= link_to 'Back', questions_path %>
