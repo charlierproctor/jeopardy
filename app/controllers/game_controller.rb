@@ -35,7 +35,7 @@ class GameController < ApplicationController
     answer.update_attributes(points: new_points)
     
     if new_points.to_i < 0
-      flash[:message] = new_points + " points losts."
+      flash[:message] = new_points + " points lost."
       flash[:status] = "failure"
     else
       flash[:message] = new_points + " points earned."
