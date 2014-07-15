@@ -9,6 +9,7 @@ class QuestionsController < ApplicationController
    
     #let's make sure they're not cheating, by trying to resubmit their answer to the question
     @team_answer = Answer.find_by(team_id: @team_id, question_id: @question.id)
+    @team_answer.update_attributes(text: @answer)
     if @team_answer == nil
       redirect_to "/game/play"
     elsif @team_answer.points < 0
